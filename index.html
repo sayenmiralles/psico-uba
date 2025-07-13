@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Malla Curricular - Psicología</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #f9f1f0; /* fondo palo rosa suave */
+      color: #5a3e3e; /* texto marrón suave */
+    }
+    h1, h2 {
+      text-align: center;
+      color: #a97474; /* rosa palo */
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .year {
+      margin: 25px auto;
+      max-width: 700px;
+      background: #f3d8d8; /* rosa palo claro */
+      border-radius: 14px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 12px rgba(169, 116, 116, 0.25);
+      border: 1.5px solid #e7c4c4;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    li {
+      padding: 14px 20px;
+      background: #f7e3e3; /* rosa muy suave */
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+      box-shadow: 0 1px 4px rgba(169, 116, 116, 0.15);
+      user-select: none;
+      font-weight: 500;
+      color: #6e4b4b;
+    }
+    li:hover {
+      background: #e8c6c6; /* rosa palo más oscuro al hover */
+      color: #5a3e3e;
+    }
+    li.ticked {
+      text-decoration: line-through;
+      background: #d3b2b2; /* rosa apagado */
+      color: #836161;
+      box-shadow: none;
+    }
+    li.bloqueado {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+      background: #e9d7d7; /* rosa palo muy suave */
+      color: #a08686;
+      box-shadow: none;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #7d5a5a;
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Curricular - Psicología</h1>
+
+  <div class="year">
+    <h2>Primer año (CBC)</h2>
+    <ul>
+      <li data-id="semiologia">Semiólogia</li>
+      <li data-id="psicologia">Psicología</li>
+      <li data-id="biologia">Biología</li>
+      <li data-id="matematica">Matemática</li>
+      <li data-id="sociedad">Sociedad y Estado</li>
+      <li data-id="pensamiento">Pensamiento científico</li>
+    </ul>
+    <div class="note">Necesitás tener estas 6 materias para pasar al segundo año</div>
+  </div>
+
+  <div class="year">
+    <h2>Segundo año</h2>
+    <ul>
+      <li data-id="psicologiaGeneral">Psicología General</li>
+      <li data-id="estadistica">Estadística</li>
+      <li data-id="psicologiaSocial">Psicología Social</li>
+      <li data-id="psicoanalisis">Psicoanálisis Freud</li>
+      <li data-id="epistemologia">Psicología y Epistemología Genética</li>
+      <li data-id="neurofisiologia">Neurofisiología</li>
+    </ul>
+  </div>
+
+  <div class="year">
+    <h2>Tercer año</h2>
+    <ul>
+      <li data-id="historiaPsicologia">Historia de la Psicología</li>
+      <li data-id="metodologiaInvestigacion">Metodología de la Investigación</li>
+      <li data-id="saludPublica">Salud Pública y Mental</li>
+      <li data-id="teoriaGrupos">Teoría y Técnica de Grupos</li>
+      <li data-id="psEvolutivaNinez">Ps. Evolutiva Niñez</li>
+      <li data-id="psEvolutivaAdolescencia">Ps. Evolutiva Adolescencia</li>
+      <li data-id="psicopatologia">Psicopatología</li>
+      <li data-id="idioma">Requisito Idioma (Inglés o Francés)</li>
+    </ul>
+  </div>
+
+  <div class="year">
+    <h2>Cuarto año</h2>
+    <ul>
+      <li data-id="psEtica">Ps. Ética y DD.HH</li>
+      <li data-id="psEducacional">Psicología Educacional</li>
+      <li data-id="psInstitucional">Psicología Institucional</li>
+      <li data-id="psTrabajo">Psicología del Trabajo</li>
+      <li data-id="cpClinicaAdultos">CP. y P. Clínica de Adultos</li>
+      <li data-id="psicologiaJuridica">Psicología Jurídica</li>
+      <li data-id="psicoterapias">Psicoterapias</li>
+    </ul>
+  </div>
+
+  <div class="year">
+    <h2>Quinto año</h2>
+    <ul>
+      <li data-id="practicaProfesional">Práctica Profesional o de Investigación</li>
+      <li data-id="materiaElectiva1">Materia Electiva / Práctica</li>
+      <li data-id="materiaElectiva2">Materia Electiva</li>
+      <li data-id="materiaElectiva3">Materia Electiva</li>
+      <li data-id="requisitoTesis">Requisito Tesis</li>
+    </ul>
+  </div>
+
+  <script>
+    const requisitos = {
+      historiaPsicologia: ['psicologiaGeneral'],
+      metodologiaInvestigacion: ['psicologiaGeneral', 'estadistica'],
+      saludPublica: ['psicologiaSocial'],
+      teoriaGrupos: ['psicologiaSocial', 'psicoanalisis'],
+      psEvolutivaNinez: ['psicoanalisis', 'epistemologia'],
+      psicopatologia: ['neurofisiologia'],
+      idioma: ['psicologiaGeneral', 'psicoanalisis'],
+      psEtica: ['historiaPsicologia', 'psicologiaGeneral'],
+      psEducacional: ['psEvolutivaAdolescencia'],
+      psInstitucional: ['saludPublica', 'teoriaGrupos'],
+      psTrabajo: ['cpClinicaAdultos'],
+      cpClinicaAdultos: ['cpClinicaAdultos'], 
+      psicologiaJuridica: ['cpClinicaAdultos'],
+      psicoterapias: ['cpClinicaAdultos'],
+    };
+
+    const STORAGE_KEY = 'malla_psicologia_ticked';
+    let ticked = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+    const items = {};
+    document.querySelectorAll('li[data-id]').forEach(li => {
+      items[li.dataset.id] = li;
+    });
+
+    function estaDesbloqueada(id) {
+      if (!(id in requisitos)) return true;
+      return requisitos[id].every(reqId => ticked.includes(reqId));
+    }
+
+    function actualizarEstado() {
+      Object.keys(items).forEach(id => {
+        const li = items[id];
+        if (estaDesbloqueada(id)) {
+          li.classList.remove('bloqueado');
+          li.style.pointerEvents = 'auto';
+          li.style.cursor = 'pointer';
+        } else {
+          li.classList.add('bloqueado');
+          li.style.pointerEvents = 'none';
+          li.style.cursor = 'default';
+          li.classList.remove('ticked');
+          const index = ticked.indexOf(id);
+          if (index > -1) {
+            ticked.splice(index,1);
+          }
+        }
+      });
+    }
+
+    function guardarEstado() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ticked));
+    }
+
+    function inicializar() {
+      actualizarEstado();
+      Object.keys(items).forEach(id => {
+        items[id].addEventListener('click', () => {
+          if (items[id].classList.contains('bloqueado')) return;
+          if (ticked.includes(id)) {
+            ticked = ticked.filter(x => x !== id);
+          } else {
+            ticked.push(id);
+          }
+          guardarEstado();
+          actualizarEstado();
+        });
+      });
+    }
+
+    inicializar();
+  </script>
+</body>
+</html>
